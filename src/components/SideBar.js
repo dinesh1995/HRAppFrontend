@@ -20,7 +20,7 @@ class SideBar extends Component {
         </MenuItem>
         <MenuItem onClick={()=>{window.location.pathname = '/home'}}><AiOutlineHome className="icons"/> Dashboard</MenuItem>
         <MenuItem onClick={()=>{window.location.pathname = '/employee'}}><FaRegUserCircle className="icons"/> Employees</MenuItem>
-        <MenuItem onClick={()=>{window.location.pathname = '/addLeave'}}><AiOutlineFieldTime className="icons"/> Time off</MenuItem>
+        <MenuItem onClick={()=>{window.location.pathname = '/leave'}}><AiOutlineFieldTime className="icons"/> Time off</MenuItem>
         <MenuItem onClick={()=>{
           window.location.pathname = '/';
           sessionStorage.clear();

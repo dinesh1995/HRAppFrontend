@@ -11,6 +11,7 @@ import AddEmployee from './components/AddEmployee';
 import SideBar from './components/SideBar';
 import EmployeeList from './components/EmployeeList';
 import Login from './components/Login';
+import Leave from './components/Leave';
 import AddLeave from './components/AddLeave';
 import Employee from './components/Employee';
 
@@ -38,6 +39,10 @@ export default function App() {
             <Route path="/employee">
               <SideBar />
               <EmployeeList />
+            </Route>
+            <Route path="/leave">
+              <SideBar />
+              <Leave />
             </Route>
             <Route path="/addLeave">
               <SideBar />

@@ -13,7 +13,6 @@ class EmployeeList extends Component {
 
   async componentDidMount() {
     const resp = await axios.get(process.env.REACT_APP_WEB_SERVICE_URL+"/empList");
-    console.log(resp.data);
     this.setState({ employees: resp.data });
   }
 
