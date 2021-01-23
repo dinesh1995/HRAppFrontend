@@ -27,7 +27,6 @@ class Employee extends Component {
   async componentDidMount() {
     const empId  = this.props.empId;
     const resp = await axios.get(process.env.REACT_APP_WEB_SERVICE_URL+"/showEmployee/"+empId);
-    console.log(resp.data);
     this.setState({ ...resp.data })
   }
 
@@ -40,11 +39,15 @@ class Employee extends Component {
   handleSubmit = async(event) => {
     const empId  = this.props.empId;
     event.preventDefault();
-    console.log(this.state);
-    console.log(process.env.REACT_APP_WEB_SERVICE_URL);
     let resp = await axios.put(process.env.REACT_APP_WEB_SERVICE_URL+"/editEmployee/"+empId, this.state, {headers: {'Content-type': 'application/json'}});
     if (resp.status === 200){
       toast.success('Employee Details updated successfully!', {
+        autoClose: 5000,
+        closeOnClick: true
+      })
+    }
+    else {
+      toast.error('Error in updating employee! Try again later', {
         autoClose: 5000,
         closeOnClick: true
       })

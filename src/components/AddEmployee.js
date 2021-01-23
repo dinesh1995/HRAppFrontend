@@ -31,10 +31,7 @@ class AddEmployee extends Component {
 
   handleSubmit = async(event) => {
     event.preventDefault();
-    console.log(this.state);
-    console.log(process.env.REACT_APP_WEB_SERVICE_URL);
     let resp = await axios.post(process.env.REACT_APP_WEB_SERVICE_URL+"/addEmployee", this.state, {headers: {'Content-type': 'application/json'}});
-    console.log(resp);
     if (resp.status === 200){
       toast.success('Employee added successfully!', {
         autoClose: 5000,

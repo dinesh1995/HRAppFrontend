@@ -4,11 +4,15 @@ import App from './App';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { ToastContainer } from 'react-toastify';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <>
+    <ToastContainer />
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </>,
   document.getElementById('root')
 );
 

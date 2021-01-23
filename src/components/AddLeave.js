@@ -36,7 +36,7 @@ class AddLeave extends Component {
       <Form id="addEmployeeForm" onSubmit = { this.handleSubmit }>
       <FormGroup row>
           <Label for="type" sm={2}>Leave Type</Label>
-          <Col sm={2}>
+          <Col sm={3}>
             <Input type="select" name="leaveType" id="type" onChange={this.handleChange}>
               <option value="Sick Leave">Sick Leave</option>
               <option value="Casual Leave">Casual Leave</option>
@@ -46,13 +46,13 @@ class AddLeave extends Component {
         </FormGroup>
         <FormGroup row>
           <Label for="startDate" sm={2}>Start Date</Label>
-          <Col sm={2}>
+          <Col sm={3}>
             <Input type="date" name="startDate" id="startDate" onChange={this.handleChange}/>
           </Col>
         </FormGroup>
         <FormGroup row>
           <Label for="endDate" sm={2}>End Date</Label>
-          <Col sm={2}>
+          <Col sm={3}>
             <Input type="date" name="endDate" id="endDate" onChange={this.handleChange}/>
           </Col>
         </FormGroup>
