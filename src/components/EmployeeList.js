@@ -6,46 +6,9 @@ import { FaRegEdit } from 'react-icons/fa';
 
 import './EmployeeList.css'
 
-const columns = [
-  {
-    name: 'Emp ID',
-    selector: 'empId',
-    sortable: true,
-  },
-  {
-    name: 'Name',
-    selector: 'name',
-    sortable: true,
-  },
-  {
-    name: 'Email',
-    selector: 'emailId',
-    sortable: true,
-  },
-  {
-    name: 'Gender',
-    selector: 'gender',
-    sortable: true,
-  },
-  {
-    name: 'Role',
-    selector: 'role',
-    sortable: true,
-  },
-  {
-    name: 'Team',
-    selector: 'teamName',
-    sortable: true,
-  },
-  {
-    name: 'Edit',
-    selector: 'teamName'
-  }
-];
-
 class EmployeeList extends Component {
   state = {
-    employees: []
+    employees: [{emailId: "Loading Employee details..."}]
   }
 
   async componentDidMount() {
