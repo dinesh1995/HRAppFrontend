@@ -5,25 +5,33 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import AddEmployee from './components/AddEmployee';
-import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import 'react-pro-sidebar/dist/css/styles.css';
 
-export default function BasicExample() {
+import './App.css';
+import AddEmployee from './components/AddEmployee';
+import SideBar from './components/SideBar';
+import EmployeeList from './components/EmployeeList';
+
+export default function App() {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/addEmployee">
-          <AddEmployee />
-        </Route>
-      </Switch>
-    </Router>
+    <div className="App">
+      <SideBar />
+      <Router>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/about">
+            <About />
+          </Route>
+          <Route path="/addEmployee">
+            <AddEmployee />
+          </Route>
+          <Route path="/employee">
+            <EmployeeList />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
   );
 }
 
