@@ -1,18 +1,14 @@
 import React, {Component} from 'react'
 
-import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import './SideBar.css';
-import { FaHome } from 'react-icons/fa';
 import { AiOutlineHome } from 'react-icons/ai';
 import { FaRegUserCircle } from 'react-icons/fa';
 import { AiOutlineFieldTime } from 'react-icons/ai';
 import { CgLogOut } from 'react-icons/cg';
 
 class SideBar extends Component {
-  constructor(props){
-    super(props)
-  }
-
+  
   render(){
   return (
     <ProSidebar className="sidebar">

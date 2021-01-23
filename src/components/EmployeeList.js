@@ -18,6 +18,7 @@ class EmployeeList extends Component {
   }
 
   render() {
+    const isAdmin = (JSON.parse(sessionStorage.getItem('role')) === 'Admin');
     return (
       <div className="content">
         <Button className="add-button" onClick={()=>{window.location.pathname = '/addEmployee'}}><AiOutlinePlusCircle className="icons"/> Add New Employee</Button>
@@ -42,8 +43,8 @@ class EmployeeList extends Component {
               <td>{listValue.emailId}</td>
               <td>{listValue.gender}</td>
               <td>{listValue.role}</td>
-              <td>{listValue.team}</td>
-              <td><FaRegEdit/></td>
+              <td>{listValue.teamName}</td>
+              {isAdmin? <td><a href={'/employeeDetail/'+listValue.empId}><FaRegEdit/></a></td> : <td></td>}
             </tr>
           );
         })}

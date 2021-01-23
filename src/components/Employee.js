@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
-import axios from "axios"; 
-import { toast } from 'react-toastify';
+import axios from "axios";
 import { BiSave } from 'react-icons/bi';
-import { GiCancel } from 'react-icons/gi';
-import './AddEmployee.css'
+import { GiCancel } from 'react-icons/gi'; 
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import './Employee.css'
 
-class AddEmployee extends Component {
+class Employee extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -22,6 +23,13 @@ class AddEmployee extends Component {
       salary: ''
     }
   }
+  
+  async componentDidMount() {
+    const empId  = this.props.empId;
+    const resp = await axios.get(process.env.REACT_APP_WEB_SERVICE_URL+"/showEmployee/"+empId);
+    console.log(resp.data);
+    this.setState({ ...resp.data })
+  }
 
   handleChange = event => {
     this.setState({
@@ -30,25 +38,35 @@ class AddEmployee extends Component {
   }
 
   handleSubmit = async(event) => {
+    const empId  = this.props.empId;
     event.preventDefault();
     console.log(this.state);
     console.log(process.env.REACT_APP_WEB_SERVICE_URL);
-    let resp = await axios.post(process.env.REACT_APP_WEB_SERVICE_URL+"/addEmployee", this.state, {headers: {'Content-type': 'application/json'}});
-    console.log(resp);
+    let resp = await axios.put(process.env.REACT_APP_WEB_SERVICE_URL+"/editEmployee/"+empId, this.state, {headers: {'Content-type': 'application/json'}});
     if (resp.status === 200){
-      toast.success('Employee added successfully!', {
+      toast.success('Employee Details updated successfully!', {
         autoClose: 5000,
         closeOnClick: true
       })
-      window.location.pathname = '/employeeDetail/'+resp.data.empId;
+    }
+  }
+
+  deleteEmployee = async() => {
+    const empId  = this.props.empId;
+    let resp = await axios.delete(process.env.REACT_APP_WEB_SERVICE_URL+"/deletEmployee/"+empId);
+    if (resp.status === 200){
+      toast.success('Employee Deleted successfully!', {
+        autoClose: 5000,
+        closeOnClick: true
+      })
+      window.location.pathname = '/employee';
     }
     else {
-      toast.error('Something went wrong! Try again later', {
+      toast.error('Error in deleting employee!', {
         autoClose: 5000,
         closeOnClick: true
       })
     }
-    
   }
 
   render(){
@@ -58,37 +76,37 @@ class AddEmployee extends Component {
         <FormGroup row>
           <Label for="employeeName" sm={2}>Name</Label>
           <Col sm={5}>
-            <Input type="text" name="name" id="employeeName" placeholder="Enter Employee Full Name" onChange={this.handleChange} required/>
+            <Input type="text" name="name" id="employeeName" placeholder="Enter Employee Full Name" onChange={this.handleChange} required value={this.state.name}/>
           </Col>
         </FormGroup>
         <FormGroup row>
           <Label for="employeeEmail" sm={2}>Email</Label>
           <Col sm={5}>
-            <Input type="email" name="emailId" id="employeeEmail" placeholder="Enter Employee Email" onChange={this.handleChange} required/>
+            <Input type="email" name="emailId" id="employeeEmail" placeholder="Enter Employee Email" onChange={this.handleChange} required value={this.state.emailId}/>
           </Col>
         </FormGroup>
         <FormGroup row>
           <Label for="employeePassword" sm={2}>Password</Label>
           <Col sm={5}>
-            <Input type="password" name="password" id="employeePassword" placeholder="Enter Employee Password" onChange={this.handleChange} required/>
+            <Input type="password" name="password" id="employeePassword" placeholder="Enter Employee Password" onChange={this.handleChange} required value={this.state.password}/>
           </Col>
         </FormGroup>
         <FormGroup row>
           <Label for="employeeDob" sm={2}>Date of Birth</Label>
           <Col sm={3}>
-            <Input type="date" name="dob" id="employeeDob" onChange={this.handleChange}/>
+            <Input type="date" name="dob" id="employeeDob" onChange={this.handleChange} value={this.state.dob}/>
           </Col>
         </FormGroup>
         <FormGroup row>
           <Label for="employeeAddress" sm={2}>Address</Label>
           <Col sm={5}>
-            <Input type="text" name="address" id="employeeAddress" placeholder="Enter Employee Address" onChange={this.handleChange}/>
+            <Input type="text" name="address" id="employeeAddress" placeholder="Enter Employee Address" onChange={this.handleChange} value={this.state.address}/>
           </Col>
         </FormGroup>
         <FormGroup row>
           <Label for="employeeGender" sm={2}>Gender</Label>
           <Col sm={3}>
-            <Input type="select" name="gender" id="employeeGender" onChange={this.handleChange}>
+            <Input type="select" name="gender" id="employeeGender" onChange={this.handleChange} value={this.state.gender}>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
               <option value="Others">Others</option>
@@ -98,25 +116,25 @@ class AddEmployee extends Component {
         <FormGroup row>
           <Label for="employeePhoneNumber" sm={2}>Phone Number</Label>
           <Col sm={5}>
-            <Input type="text" name="phoneNo" id="employeePhoneNumber" placeholder="Enter Employee Phone number" onChange={this.handleChange}/>
+            <Input type="text" name="phoneNo" id="employeePhoneNumber" placeholder="Enter Employee Phone number" onChange={this.handleChange} value={this.state.phoneNo} />
           </Col>
         </FormGroup>
         <FormGroup row>
           <Label for="employeeRole" sm={2}>Role</Label>
           <Col sm={5}>
-            <Input type="text" name="role" id="employeeRole" placeholder="Enter Employee Role" onChange={this.handleChange}/>
+            <Input type="text" name="role" id="employeeRole" placeholder="Enter Employee Role" onChange={this.handleChange} value={this.state.role} />
           </Col>
         </FormGroup>
         <FormGroup row>
           <Label for="employeeTeam" sm={2}>Team Name</Label>
           <Col sm={5}>
-            <Input type="text" name="teamName" id="employeeTeam" placeholder="Enter Employee Team" onChange={this.handleChange}/>
+            <Input type="text" name="teamName" id="employeeTeam" placeholder="Enter Employee Team" onChange={this.handleChange} value={this.state.teamName} />
           </Col>
         </FormGroup>
         <FormGroup row>
           <Label for="employeeSalary" sm={2}>Salary amount ($)</Label>
           <Col sm={5}>
-            <Input type="text" name="salary" id="employeeSalary" placeholder="Enter Employee Salary (in Dollars)" onChange={this.handleChange}/>
+            <Input type="text" name="salary" id="employeeSalary" placeholder="Enter Employee Salary (in Dollars)" onChange={this.handleChange} value={this.state.salary} />
           </Col>
         </FormGroup>
         {/* <FormGroup row>
@@ -127,8 +145,8 @@ class AddEmployee extends Component {
         </FormGroup> */}
         <FormGroup check row>
           <Col sm={{ size: 10, offset: 2 }}>
-            <Button><BiSave className="icons"/> Add Employee</Button>
-            <a href={'/employee'} className="btn btn-secondary cancelBtn"><GiCancel className="icons"/> Cancel</a>
+            <Button><BiSave className="icons"/> Update Employee</Button>
+            <div onClick = {this.deleteEmployee} className="btn btn-danger"><GiCancel className="icons"/> Delete Employee</div>
           </Col>
         </FormGroup>
       </Form>
@@ -137,4 +155,4 @@ class AddEmployee extends Component {
   }
 }
 
-export default AddEmployee;
+export default Employee;

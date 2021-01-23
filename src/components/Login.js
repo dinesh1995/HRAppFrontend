@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, Input } from 'reactstrap';
 import axios from "axios"; 
 import './Login.css';
 
@@ -24,9 +24,10 @@ class Login extends Component {
     console.log(this.state);
     let resp = await axios.post(process.env.REACT_APP_WEB_SERVICE_URL+"/login", this.state, {headers: {'Content-type': 'application/json'}});
     console.log(resp);
-    if (resp.status == 200){
+    if (resp.status === 200){
       sessionStorage.setItem('token', JSON.stringify(resp.data.empId));
       sessionStorage.setItem('name', JSON.stringify(resp.data.name));
+      sessionStorage.setItem('role', JSON.stringify(resp.data.role));
       window.location.pathname = '/home'
     }
   }
@@ -39,7 +40,7 @@ class Login extends Component {
           <div className="row d-flex">
             <div className="col-lg-6">
               <div className="card1 pb-5">
-                <div className="row px-3 justify-content-center mt-4 mb-5"> <img src="https://hrone.cloud/wp-content/uploads/2020/12/hrms-guide1.png" className="image" /> </div>
+                <div className="row px-3 justify-content-center mt-4 mb-5"> <img src="https://hrone.cloud/wp-content/uploads/2020/12/hrms-guide1.png" className="image" alt="Logo"/> </div>
               </div>
             </div>
             <div className="col-lg-6">
