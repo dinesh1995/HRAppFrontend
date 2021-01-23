@@ -64,7 +64,7 @@ class AddLeave extends Component {
         </FormGroup>
         <FormGroup check row>
           <Col sm={{ size: 10, offset: 2 }}>
-            <Button>Submit Time off</Button>
+            <Button>Apply Time off</Button>
           </Col>
         </FormGroup>
       </Form>

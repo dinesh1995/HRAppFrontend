@@ -408,3 +408,12 @@
   margin-top: -5px;
   font-size: 25px;
 }
+
+.userImg {
+  height: 150px;
+  width: 150px;
+}
+
+.userName {
+  color: #d8d8d8;
+}
