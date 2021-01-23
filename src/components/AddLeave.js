@@ -27,7 +27,7 @@ class AddLeave extends Component {
     console.log(this.state);
     let resp = await axios.post(process.env.REACT_APP_WEB_SERVICE_URL+"/addLeaves", this.state, {headers: {'Content-type': 'application/json'}});
     console.log(resp);
-    window.location.pathname = '/employee'
+    window.location.pathname = '/leave'
   }
 
   render(){

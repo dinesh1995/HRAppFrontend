@@ -7,8 +7,8 @@ import './Leave.css'
 
 class Leave extends Component {
   state = {
-    upcoming_leaves: [ {startDate: "No Data Available"}],
-    archived_leaves: [ {startDate: "No Data Available"}]
+    upcoming_leaves: [],
+    archived_leaves: []
   }
 
   async componentDidMount() {
@@ -16,11 +16,11 @@ class Leave extends Component {
     console.log(empId);
     const resp = await axios.get(process.env.REACT_APP_WEB_SERVICE_URL+"/showLeaves/"+empId);
     resp.data.map((listValue) => {
-      if ( new Date('listValue.startDate') > new Date()){
-        this.setState({ upcoming_leaves: [...this.state.upcoming_leaves, resp.data] });
+      if ( new Date(listValue.startDate) > new Date()){
+        this.setState({ upcoming_leaves: [...this.state.upcoming_leaves, listValue] });
       }
       else {
-        this.setState({ archived_leaves: [...this.state.archived_leaves, resp.data] });
+        this.setState({ archived_leaves: [...this.state.archived_leaves, listValue] });
       }
     })
   }
