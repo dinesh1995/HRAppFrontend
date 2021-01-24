@@ -14,6 +14,7 @@ import Login from './components/Login';
 import Leave from './components/Leave';
 import AddLeave from './components/AddLeave';
 import Employee from './components/Employee';
+import Home from './components/Home';
 
 export default function App() {
   const tokenString = sessionStorage.getItem('token');
@@ -60,13 +61,3 @@ export default function App() {
       </div>
   );
 }
-
-function Home() {
-  return (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
-}
-
-

@@ -138,3 +138,10 @@ a {
 .login-form {
   justify-content: center;
 }
+
+.login-button-admin {
+  margin-left: 140px;
+  height: 40px;
+  width: 200px;
+  background-color: burlywood !important;
+}

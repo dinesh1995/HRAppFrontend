@@ -21,9 +21,18 @@ class Login extends Component {
 
   handleSubmit = async(event) => {
     event.preventDefault();
-    console.log(this.state);
     let resp = await axios.post(process.env.REACT_APP_WEB_SERVICE_URL+"/login", this.state, {headers: {'Content-type': 'application/json'}});
-    console.log(resp);
+    if (resp.status === 200){
+      sessionStorage.setItem('token', JSON.stringify(resp.data.empId));
+      sessionStorage.setItem('name', JSON.stringify(resp.data.name));
+      sessionStorage.setItem('role', JSON.stringify(resp.data.role));
+      window.location.pathname = '/home'
+    }
+  }
+
+  loginAdmin = async(event) => {
+    event.preventDefault();
+    let resp = await axios.post(process.env.REACT_APP_WEB_SERVICE_URL+"/login", {emailId: "admin@test.com", password: "admin"}, {headers: {'Content-type': 'application/json'}});
     if (resp.status === 200){
       sessionStorage.setItem('token', JSON.stringify(resp.data.empId));
       sessionStorage.setItem('name', JSON.stringify(resp.data.name));
@@ -59,6 +68,9 @@ class Login extends Component {
                       <Button className="login-button">Login</Button>
                     </div>
                   </Form>
+                </div>
+                <div className="row mb-3 px-3"> 
+                  <Button className="login-button-admin" onClick={this.loginAdmin}>Login as Demo Admin</Button>
                 </div>
               </div>
             </div>
