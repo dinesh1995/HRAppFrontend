@@ -11,6 +11,7 @@ class Login extends Component {
       emailId: '',
       password: ''
     }
+    axios.get(process.env.REACT_APP_WEB_SERVICE_URL+"/showEmployee/1");
   }
 
   handleChange = event => {

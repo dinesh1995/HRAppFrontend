@@ -6,3 +6,24 @@
 .employee-table{
   margin-top: 20px;
 }
+
+.employeeOptions{
+  display: flex;
+}
+
+#teamFilter{
+  width: 200px;
+  margin-left: 10px;
+}
+
+#teamFilterLabel{
+  margin-left: 50px;
+  font-size: large;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+#employeeNameSearch{
+  width: 200px;
+  margin-left: 50px;
+}

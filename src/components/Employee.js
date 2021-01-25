@@ -19,7 +19,7 @@ class Employee extends Component {
       gender: 'Male',
       phoneNo: '',
       role: '',
-      teamName: '',
+      teamName: 'Engineering',
       salary: ''
     }
   }
@@ -129,9 +129,16 @@ class Employee extends Component {
           </Col>
         </FormGroup>
         <FormGroup row>
-          <Label for="employeeTeam" sm={2}>Team Name</Label>
-          <Col sm={5}>
-            <Input type="text" name="teamName" id="employeeTeam" placeholder="Enter Employee Team" onChange={this.handleChange} value={this.state.teamName} />
+          <Label for="employeeTeam" sm={2}>Team</Label>
+          <Col sm={3}>
+            <Input type="select" name="teamName" id="employeeTeam" onChange={this.handleChange} value={this.state.teamName}>
+              <option value="Engineering">Engineering</option>
+              <option value="Support">Support</option>
+              <option value="Sales">Sales</option>
+              <option value="Lifters">Lifters</option>
+              <option value="HR">HR</option>
+              <option value="Marketing">Marketing</option>
+            </Input>
           </Col>
         </FormGroup>
         <FormGroup row>
